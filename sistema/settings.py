@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'compumaster',
         'USER': 'root',
         'PASSWORD': 'SHJDY2Xr16SCc4nlbTBjmtiJGylK1JD1',
-        'HOST': 'SHJDY2Xr16SCc4nlbTBjmtiJGylK1JD1@dpg-cpdc05dds78s73ebmho0-a.oregon-postgres.render.com',  # O la dirección IP de tu servidor MySQL
+        'HOST': 'dpg-cpdc05dds78s73ebmho0-a.oregon-postgres.render.com',  # O la dirección IP de tu servidor MySQL
         'PORT': '5432',       # Puerto de MySQL (por defecto es 3306)
     }
 }
