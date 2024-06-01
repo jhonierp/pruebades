@@ -1,0 +1,18 @@
+
+{% extends 'barra_lateral.html' %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+
+
+{% block registro_usuario %}
+    <form method="post" action="{% url 'registros' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary" style="display: block; margin: 0 auto;">Registrarse</button>
+    </form>
+{% endblock %}
+
+        
+        
+  

@@ -1,0 +1,118 @@
+
+{% extends 'barra_lateral.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Administrador</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+</head>
+
+<body>
+    <form action="{% url 'editar_admin' id=ad.id %}" method="post">
+        {% csrf_token %}
+        <div class="container mt-5">
+            <h2 class="titulo_registro">Registro de Administrador: {{ user.persona_admins.nombres }}</h2>
+            <div class="header-container">
+                <h2 class="section-header">Datos Personales</h2>
+                <div class="section-container">
+                    <div class="section-left">
+                        <label for="nombre_completo" class="form-label">Nombre Completo:</label>
+                        <input type="text" id="nombre_completo" name="nombre_completo" value="{{ad.nombres}}" class="form-control" required>
+                    </div>
+                    <div class="section-right">
+                        <label for="apellidos" class="form-label">Apellidos:</label>
+                        <input type="text" id="apellidos" name="apellidos" value="{{ad.apellidos}}" class="form-control" required>
+                    </div>
+
+                    <div class="section-left">
+                        <label for="genero" class="form-label">Género:</label>
+                        <select id="genero" name="genero" class="form-select" required>
+                            <option value="" disabled selected>Seleccione aquí</option>
+                            {% for genero in generos %}
+                            <option value="{{ genero.id }}" {% if genero.id == ad.genero_id %}selected{% endif %}>{{ genero.descripcion }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="section-right">
+                        <label for="fecha_nacimiento" class="form-label">Fecha de Nacimientsso: </label>
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" value="{{ ad.fecha_nacimiento|date:'Y-m-d' }}" required>
+                    </div>
+                    
+                    <div class="section-left">
+                        <label for="tipo_documento" class="form-label">Tipo de Documento:</label>
+                        <select id="tipo_documento" name="tipo_documento" class="form-select" required>
+                            <option value="" disabled selected>Seleccione aquí</option>
+                            {% for documento in documentos %}
+                            <option value="{{ documento.id }}" {% if documento.id == ad.tipo_doc_id %}selected{% endif %}>{{ documento.descripcion }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="section-right">
+                        <label for="fecha_expedicion" class="form-label">Fecha de Expedición:</label>
+                        <input type="date" id="fecha_expedicion" name="fecha_expedicion" class="form-control" value="{{ ad.fecha_expedicion|date:'Y-m-d' }}" required>
+                    </div>
+                    <div class="section-left">
+                        <label for="ciudad_expedicion" class="form-label">Ciudad de Expedición:</label>
+                        <select id="ciudad_expedicion" name="ciudad_expedicion" class="form-select" required>
+                            <option value="" disabled selected>Seleccione aquí</option>
+                            {% for ciudad in ciudades %}
+                            <option value="{{ ciudad.id }}" {% if ciudad.id == ad.lugar_expedicion_id %}selected{% endif %}>{{ ciudad.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="section-right">
+                        <label for="numero_documento" class="form-label">Número de Documento:</label>
+                        <input type="text" id="numero_documento" name="numero_documento" value="{{ad.num_documento}}" class="form-control" required>
+                    </div>
+                    <div class="section-left">
+                        <label for="discapacidad" class="form-label">Discapacidad:</label>
+                        <select id="discapacidad" name="discapacidad" class="form-select" required>
+                            <option value="" disabled selected>Seleccione aquí</option>
+                            {% for discapacidad in discapacidades %}
+                            <option value="{{ discapacidad.id }}" {% if discapacidad.id == ad.discapacidad_id %}selected{% endif %}>{{ discapacidad.descripcion }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="section-right">
+                        <label for="email_personal" class="form-label">Email Personal:</label>
+                        <input type="email" id="email_personal" name="email_personal" value="{{ad.correo_electronico}}" class="form-control" required>
+                    </div>
+                    <div class="section-left">
+                        <label for="celular_1" class="form-label">Celular 1:</label>
+                        <input type="text" id="celular_1" name="celular_1" value="{{ad.celular1}}" class="form-control" required>
+                    </div>
+                    <div class="section-right">
+                        <label for="celular_2" class="form-label">Celular 2:</label>
+                        <input type="text" id="celular_2" name="celular_2" value="{{ad.celular2}}" class="form-control">
+                    </div>
+                </div>
+                <h2 class="section-header">Compumaster</h2>
+                      
+                </div>
+                <br>
+                 <button type="submit" class="btn btn-primary">Guardar Datos</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        document.getElementById("grupo").addEventListener("change", function() {
+            var nuevoGrupoContainer = document.getElementById("nuevo_grupo_container");
+            if (this.value == "nuevo") {
+                nuevoGrupoContainer.style.display = "block";
+            } else {
+                nuevoGrupoContainer.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+{% endblock %}
