@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-2^ns1f5474^-2%)^fxx$r%eipks*li5nc^19xk50(9hyuwpksk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'sistema.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -87,6 +87,17 @@ DATABASES = {
         'PASSWORD': 'admin',
         'HOST': 'localhost',  # Puedes cambiar esto según tu configuración
         'PORT': '3306',       # Puedes cambiar esto según tu configuración
+    }
+}
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'compumaster',
+        'USER': 'root',
+        'PASSWORD': 'SHJDY2Xr16SCc4nlbTBjmtiJGylK1JD1',
+        'HOST': 'SHJDY2Xr16SCc4nlbTBjmtiJGylK1JD1@dpg-cpdc05dds78s73ebmho0-a.oregon-postgres.render.com',  # O la dirección IP de tu servidor MySQL
+        'PORT': '5432',       # Puerto de MySQL (por defecto es 3306)
     }
 }
 
