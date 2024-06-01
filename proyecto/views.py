@@ -1253,3 +1253,17 @@ def fun_viadmin(request):
 
 
     return render(request,"Tablas/pg_admin.html",datos_admin)
+
+
+
+import os
+from django.http import HttpResponse
+from django.conf import settings
+
+def list_templates(request):
+    template_dir = os.path.join(settings.BASE_DIR, 'proyecto/templates')
+    templates = []
+    for root, dirs, files in os.walk(template_dir):
+        for file in files:
+            templates.append(os.path.relpath(os.path.join(root, file), template_dir))
+    return HttpResponse("<br>".join(templates))
